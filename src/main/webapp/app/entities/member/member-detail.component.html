@@ -1,0 +1,89 @@
+
+<div *ngIf="member">
+    <h2><span>Member</span> {{member.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Card No</span></dt>
+        <dd>
+            <span>{{member.cardNo}}</span>
+        </dd>
+        <dt><span>Mem Name</span></dt>
+        <dd>
+            <span>{{member.memName}}</span>
+        </dd>
+        <dt><span>Password</span></dt>
+        <dd>
+            <span>{{member.password}}</span>
+        </dd>
+        <dt><span>Phone</span></dt>
+        <dd>
+            <span>{{member.phone}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{member.status}}</span>
+        </dd>
+        <dt><span>Birthday</span></dt>
+        <dd>
+            <span>{{member.birthday | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Balance</span></dt>
+        <dd>
+            <span>{{member.balance}}</span>
+        </dd>
+        <dt><span>Bonus</span></dt>
+        <dd>
+            <span>{{member.bonus}}</span>
+        </dd>
+        <dt><span>Remark</span></dt>
+        <dd>
+            <span>{{member.remark}}</span>
+        </dd>
+        <dt><span>Extfield 1</span></dt>
+        <dd>
+            <span>{{member.extfield1}}</span>
+        </dd>
+        <dt><span>Extfield 2</span></dt>
+        <dd>
+            <span>{{member.extfield2}}</span>
+        </dd>
+        <dt><span>Extfield 3</span></dt>
+        <dd>
+            <span>{{member.extfield3}}</span>
+        </dd>
+        <dt><span>Extfield 4</span></dt>
+        <dd>
+            <span>{{member.extfield4}}</span>
+        </dd>
+        <dt><span>Extfield 5</span></dt>
+        <dd>
+            <span>{{member.extfield5}}</span>
+        </dd>
+        <dt><span>Grade</span></dt>
+        <dd>
+            <div *ngIf="member.grade">
+                <a [routerLink]="['/grade', member.grade?.id]">{{member.grade?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <div *ngIf="member.category">
+                <a [routerLink]="['/member-cate', member.category?.id]">{{member.category?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'member/'+ member.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

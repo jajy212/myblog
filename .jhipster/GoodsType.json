@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "parentId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "typeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317132445",
+    "javadoc": "商品类别",
+    "entityTableName": "goods_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

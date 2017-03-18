@@ -1,0 +1,39 @@
+
+<div *ngIf="pay">
+    <h2><span>Pay</span> {{pay.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Amount</span></dt>
+        <dd>
+            <span>{{pay.amount}}</span>
+        </dd>
+        <dt><span>Pay Date</span></dt>
+        <dd>
+            <span>{{pay.payDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Paytype</span></dt>
+        <dd>
+            <span>{{pay.paytype}}</span>
+        </dd>
+        <dt><span>Mem Order</span></dt>
+        <dd>
+            <div *ngIf="pay.memOrder">
+                <a [routerLink]="['/mem-order', pay.memOrder?.id]">{{pay.memOrder?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pay/'+ pay.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

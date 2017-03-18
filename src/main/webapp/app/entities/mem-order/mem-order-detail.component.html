@@ -1,0 +1,77 @@
+
+<div *ngIf="memOrder">
+    <h2><span>Mem Order</span> {{memOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Order Code</span></dt>
+        <dd>
+            <span>{{memOrder.orderCode}}</span>
+        </dd>
+        <dt><span>Order Type</span></dt>
+        <dd>
+            <span>{{memOrder.orderType}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{memOrder.createdDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{memOrder.status}}</span>
+        </dd>
+        <dt><span>Last Modified Date</span></dt>
+        <dd>
+            <span>{{memOrder.lastModifiedDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Remark</span></dt>
+        <dd>
+            <span>{{memOrder.remark}}</span>
+        </dd>
+        <dt><span>Extfield 1</span></dt>
+        <dd>
+            <span>{{memOrder.extfield1}}</span>
+        </dd>
+        <dt><span>Extfield 2</span></dt>
+        <dd>
+            <span>{{memOrder.extfield2}}</span>
+        </dd>
+        <dt><span>Extfield 3</span></dt>
+        <dd>
+            <span>{{memOrder.extfield3}}</span>
+        </dd>
+        <dt><span>Extfield 4</span></dt>
+        <dd>
+            <span>{{memOrder.extfield4}}</span>
+        </dd>
+        <dt><span>Extfield 5</span></dt>
+        <dd>
+            <span>{{memOrder.extfield5}}</span>
+        </dd>
+        <dt><span>Goods</span></dt>
+        <dd>
+            <span *ngFor="let goods of memOrder.goods; let last = last">
+                <a [routerLink]="['/goods', goods?.id ]">{{goods.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <div *ngIf="memOrder.createdBy">
+                <a [routerLink]="['/member', memOrder.createdBy?.id]">{{memOrder.createdBy?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mem-order/'+ memOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

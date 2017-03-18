@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "memOrder",
+            "otherEntityName": "memOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "payDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "paytype",
+            "fieldType": "PayType",
+            "fieldValues": "CASH,ALIPAY,WEIXIN,BANKCARD",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170317132445",
+    "entityTableName": "pay",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

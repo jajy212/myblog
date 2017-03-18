@@ -1,0 +1,19 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "cateName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317132445",
+    "entityTableName": "member_cate",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

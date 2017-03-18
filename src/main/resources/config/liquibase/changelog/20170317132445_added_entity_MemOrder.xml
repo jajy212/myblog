@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity MemOrder.
+    -->
+    <changeSet id="20170317132445-1" author="jhipster">
+        <createTable tableName="mem_order">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_code" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="order_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="created_date" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="status" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="last_modified_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="remark" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="extfield_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="extfield_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="extfield_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="extfield_4" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="extfield_5" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="created_by_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+        <createTable tableName="mem_order_goods">
+            <column name="goods_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mem_orders_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="mem_orders_id, goods_id" tableName="mem_order_goods"/>
+        
+    </changeSet>
+</databaseChangeLog>

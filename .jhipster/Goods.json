@@ -1,0 +1,67 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "goodsType",
+            "otherEntityName": "goodsType",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "goodsName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serialNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "briefCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "barCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "unit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isService",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield5",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317132445",
+    "javadoc": "商品",
+    "entityTableName": "goods",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

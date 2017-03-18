@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity MemOrder.
+    -->
+    <changeSet id="20170317132445-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="mem_orders_id"
+                                 baseTableName="mem_order_goods"
+                                 constraintName="fk_mem_order_goods_mem_orders_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mem_order"/>
+        <addForeignKeyConstraint baseColumnNames="goods_id"
+                                 baseTableName="mem_order_goods"
+                                 constraintName="fk_mem_order_goods_goods_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="goods"/>
+        
+        <addForeignKeyConstraint baseColumnNames="created_by_id"
+                                 baseTableName="mem_order"
+                                 constraintName="fk_mem_order_created_by_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="member"/>
+
+    </changeSet>
+</databaseChangeLog>

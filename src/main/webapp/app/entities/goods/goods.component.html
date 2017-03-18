@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Goods</span>
+        <button class="btn btn-primary float-right create-goods" [routerLink]="['/', { outlets: { popup: ['goods-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Goods
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="goods">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Goods Name</span></th>
+            <th><span>Serial No</span></th>
+            <th><span>Brief Code</span></th>
+            <th><span>Bar Code</span></th>
+            <th><span>Unit</span></th>
+            <th><span>Is Service</span></th>
+            <th><span>Remark</span></th>
+            <th><span>Goods Type</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let goods of goods ;trackBy: trackId">
+                <td><a [routerLink]="['../goods', goods.id ]">{{goods.id}}</a></td>
+                <td>{{goods.goodsName}}</td>
+                <td>{{goods.serialNo}}</td>
+                <td>{{goods.briefCode}}</td>
+                <td>{{goods.barCode}}</td>
+                <td>{{goods.unit}}</td>
+                <td>{{goods.isService == '0' ? '否':'是'}}</td>
+                <td>{{goods.remark}}</td>
+                <td>
+                    <div *ngIf="goods.goodsType">
+                        <a [routerLink]="['../goods-type', goods.goodsType?.id ]" >{{goods.goodsType?.typeName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../goods', goods.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'goods/'+ goods.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'goods/'+ goods.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

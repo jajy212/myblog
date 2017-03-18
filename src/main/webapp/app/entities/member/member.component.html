@@ -1,0 +1,103 @@
+<div>
+    <h2>
+        <span>Members</span>
+        <button class="btn btn-primary float-right create-member" [routerLink]="['/', { outlets: { popup: ['member-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Member
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="members">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cardNo"><span>Card No</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="memName"><span>Mem Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="password"><span>Password</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phone"><span>Phone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span>Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="birthday"><span>Birthday</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="balance"><span>Balance</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bonus"><span>Bonus</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="remark"><span>Remark</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="extfield1"><span>Extfield 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="extfield2"><span>Extfield 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="extfield3"><span>Extfield 3</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="extfield4"><span>Extfield 4</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="extfield5"><span>Extfield 5</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="grade.id"><span>Grade</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="category.id"><span>Category</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let member of members ;trackBy: trackId">
+                <td><a [routerLink]="['../member', member.id ]">{{member.id}}</a></td>
+                <td>{{member.cardNo}}</td>
+                <td>{{member.memName}}</td>
+                <td>{{member.password}}</td>
+                <td>{{member.phone}}</td>
+                <td>{{member.status}}</td>
+                <td>{{member.birthday | date:'mediumDate'}}</td>
+                <td>{{member.balance}}</td>
+                <td>{{member.bonus}}</td>
+                <td>{{member.remark}}</td>
+                <td>{{member.extfield1}}</td>
+                <td>{{member.extfield2}}</td>
+                <td>{{member.extfield3}}</td>
+                <td>{{member.extfield4}}</td>
+                <td>{{member.extfield5}}</td>
+                <td>
+                    <div *ngIf="member.grade">
+                        <a [routerLink]="['../grade', member.grade?.id ]" >{{member.grade?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="member.category">
+                        <a [routerLink]="['../member-cate', member.category?.id ]" >{{member.category?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../member', member.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'member/'+ member.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'member/'+ member.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- Pager is not implemented yet, so this is normal pagination instead -->
+        <div *ngIf="members && members.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page"  (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,93 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "order",
+            "otherEntityName": "memOrder",
+            "otherEntityRelationshipName": "createdBy"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "grade",
+            "otherEntityName": "grade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "memberCate",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "cardNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "memName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "birthday",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "balance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "bonus",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield5",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317132445",
+    "javadoc": "会员",
+    "entityTableName": "member",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

@@ -1,0 +1,55 @@
+
+<div *ngIf="goods">
+    <h2><span>Goods</span> {{goods.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Goods Name</span></dt>
+        <dd>
+            <span>{{goods.goodsName}}</span>
+        </dd>
+        <dt><span>Serial No</span></dt>
+        <dd>
+            <span>{{goods.serialNo}}</span>
+        </dd>
+        <dt><span>Brief Code</span></dt>
+        <dd>
+            <span>{{goods.briefCode}}</span>
+        </dd>
+        <dt><span>Bar Code</span></dt>
+        <dd>
+            <span>{{goods.barCode}}</span>
+        </dd>
+        <dt><span>Unit</span></dt>
+        <dd>
+            <span>{{goods.unit}}</span>
+        </dd>
+        <dt><span>Is Service</span></dt>
+        <dd>
+            <span>{{goods.isService}}</span>
+        </dd>
+        <dt><span>Remark</span></dt>
+        <dd>
+            <span>{{goods.remark}}</span>
+        </dd>
+        <dt><span>Goods Type</span></dt>
+        <dd>
+            <div *ngIf="goods.goodsType">
+                <a [routerLink]="['/goods-type', goods.goodsType?.id]">{{goods.goodsType?.typeName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'goods/'+ goods.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

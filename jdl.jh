@@ -1,0 +1,102 @@
+
+//会员等级
+entity Grade {
+    gradeName String//级别名称
+    discount Integer//折扣
+    remark String //备注
+}
+//会员类别
+entity MemberCate {
+	cateName String //类别名称
+    remark String //备注
+}
+//订单
+entity MemOrder {
+	orderCode String required//订单号
+    orderType String //订单类别
+	createdDate LocalDate required//订单日期
+    status Integer required //订单状态
+    lastModifiedDate LocalDate //最后修改日期
+    remark String //备注
+    extfield1 String //扩展字段1
+    extfield2 String //扩展字段2
+    extfield3 String //扩展字段3
+    extfield4 String //扩展字段4
+    extfield5 String //扩展字段5
+}
+//支付方式
+enum PayType {
+	CASH,ALIPAY,WEIXIN,BANKCARD
+}
+//支付
+entity Pay {
+	amount BigDecimal required //金额
+    payDate LocalDate //支付日期
+    paytype  PayType required //支付方式
+}
+
+/**
+*会员
+*/
+entity Member {
+	cardNo String required //卡号
+    memName String //会员姓名
+    password String //密码
+    phone String //电话
+    status Integer required //状态
+    birthday LocalDate //生日
+    balance BigDecimal //余额
+    bonus Integer //积分
+    remark String //备注
+    extfield1 String //扩展字段1
+    extfield2 String //扩展字段2
+    extfield3 String //扩展字段3
+    extfield4 String //扩展字段4
+    extfield5 String //扩展字段5
+}
+/**
+*商品
+*/
+entity Goods {
+	goodsName String	//商品名称
+    serialNo String	//商品编号
+    briefCode String //简码
+    barCode String //条码
+    unit String	//商品单位
+    isService String //是否服务类商品
+    remark String //备注
+    extfield1 String //扩展字段1
+    extfield2 String //扩展字段2
+    extfield3 String //扩展字段3
+    extfield4 String //扩展字段4
+    extfield5 String //扩展字段5
+}
+/**
+*商品类别
+*/
+entity GoodsType {
+	parentId Integer //上级类别
+    typeName String //商品类别
+    remark String //备注
+}
+
+service Member with serviceImpl
+paginate Member with pager
+
+service MemOrder with serviceImpl
+paginate MemOrder with pager
+
+relationship OneToMany {
+	Member{order} to MemOrder{createdBy},
+    MemOrder{pay} to Pay
+}
+
+relationship ManyToOne {	
+	Member{grade} to Grade,
+    Member{category} to MemberCate,
+    Goods{goodsType} to GoodsType
+}
+
+relationship ManyToMany {
+	MemOrder {goods} to Goods
+}

@@ -1,0 +1,85 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pay",
+            "otherEntityName": "pay",
+            "otherEntityRelationshipName": "memOrder"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "goods",
+            "otherEntityName": "goods",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "createdBy",
+            "otherEntityName": "member",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "orderCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "orderType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastModifiedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extfield5",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317132445",
+    "entityTableName": "mem_order",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "gradeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317132445",
+    "entityTableName": "grade",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

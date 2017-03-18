@@ -1,0 +1,136 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMemOrderLabel">Create or edit a Mem Order</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!memOrder.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="memOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_orderCode">Order Code</label>
+            <input type="text" class="form-control" name="orderCode" id="field_orderCode"
+                [(ngModel)]="memOrder.orderCode"
+            required />
+            <div [hidden]="!(editForm.controls.orderCode?.dirty && editForm.controls.orderCode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.orderCode?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_orderType">Order Type</label>
+            <input type="text" class="form-control" name="orderType" id="field_orderType"
+                [(ngModel)]="memOrder.orderType"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <div class="input-group">
+                <input id="field_createdDate" type="text" class="form-control" name="createdDate" ngbDatepicker  #createdDateDp="ngbDatepicker" [(ngModel)]="memOrder.createdDate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="createdDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <input type="number" class="form-control" name="status" id="field_status"
+                [(ngModel)]="memOrder.status"
+            required />
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.status?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastModifiedDate">Last Modified Date</label>
+            <div class="input-group">
+                <input id="field_lastModifiedDate" type="text" class="form-control" name="lastModifiedDate" ngbDatepicker  #lastModifiedDateDp="ngbDatepicker" [(ngModel)]="memOrder.lastModifiedDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="lastModifiedDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_remark">Remark</label>
+            <input type="text" class="form-control" name="remark" id="field_remark"
+                [(ngModel)]="memOrder.remark"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_extfield1">Extfield 1</label>
+            <input type="text" class="form-control" name="extfield1" id="field_extfield1"
+                [(ngModel)]="memOrder.extfield1"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_extfield2">Extfield 2</label>
+            <input type="text" class="form-control" name="extfield2" id="field_extfield2"
+                [(ngModel)]="memOrder.extfield2"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_extfield3">Extfield 3</label>
+            <input type="text" class="form-control" name="extfield3" id="field_extfield3"
+                [(ngModel)]="memOrder.extfield3"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_extfield4">Extfield 4</label>
+            <input type="text" class="form-control" name="extfield4" id="field_extfield4"
+                [(ngModel)]="memOrder.extfield4"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_extfield5">Extfield 5</label>
+            <input type="text" class="form-control" name="extfield5" id="field_extfield5"
+                [(ngModel)]="memOrder.extfield5"
+             />
+        </div>
+
+        <div class="form-group">
+            <label for="field_goods">Goods</label>
+            <select class="form-control" id="field_goods" multiple name="goods" [(ngModel)]="memOrder.goods">
+                <option [ngValue]="getSelected(memOrder.goods, goodsOption)" *ngFor="let goodsOption of goods; trackBy: trackGoodsById">{{goodsOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_createdBy">Created By</label>
+            <select class="form-control" id="field_createdBy" name="createdBy" [(ngModel)]="memOrder.createdBy" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="memberOption.id === memOrder.createdBy?.id ? memOrder.createdBy : memberOption" *ngFor="let memberOption of members; trackBy: trackMemberById">{{memberOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

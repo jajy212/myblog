@@ -1,0 +1,75 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPayLabel">Create or edit a Pay</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pay.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pay.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                [(ngModel)]="pay.amount"
+            required />
+            <div [hidden]="!(editForm.controls.amount?.dirty && editForm.controls.amount?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.amount?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.amount?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_payDate">Pay Date</label>
+            <div class="input-group">
+                <input id="field_payDate" type="text" class="form-control" name="payDate" ngbDatepicker  #payDateDp="ngbDatepicker" [(ngModel)]="pay.payDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="payDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_paytype">Paytype</label>
+            <select class="form-control" name="paytype" [(ngModel)]="pay.paytype" id="field_paytype"  required>
+                <option value="CASH">CASH</option>
+                <option value="ALIPAY">ALIPAY</option>
+                <option value="WEIXIN">WEIXIN</option>
+                <option value="BANKCARD">BANKCARD</option>
+            </select>
+            <div [hidden]="!(editForm.controls.paytype?.dirty && editForm.controls.paytype?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.paytype?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_memOrder">Mem Order</label>
+            <select class="form-control" id="field_memOrder" name="memOrder" [(ngModel)]="pay.memOrder" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="memOrderOption.id === pay.memOrder?.id ? pay.memOrder : memOrderOption" *ngFor="let memOrderOption of memorders; trackBy: trackMemOrderById">{{memOrderOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
